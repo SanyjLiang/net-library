@@ -21,6 +21,10 @@ public:
 
     // 给所有IO复用保留统一的接口
     virtual Timestamp poll(int timeoutMs, ChannelList *activeChannels) = 0;
+    //poll(timeoutMs, activeChannels)阻塞等待一段时间
+    //把发生了事件的 Channel 存到 activeChannels 里返回
+    //返回值是事件发生的时间戳。
+    
     virtual void updateChannel(Channel *channel) = 0;
     virtual void removeChannel(Channel *channel) = 0;
 
