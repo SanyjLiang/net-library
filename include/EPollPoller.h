@@ -22,6 +22,11 @@ public:
 private:
     static const int kInitEventListSize = 16; // 定义 epoll_wait 返回事件数组的初始大小
 
+    // 填写活跃的连接
+    void fillActiveChannels(int numEvents, ChannelList *activeChannels) const;
+    // 更新channel通道 其实就是调用epoll_ctl
+    void update(int operation, Channel *channel);
+    
     using EventList = std::vector<epoll_event>; // 定义 epoll_wait 返回事件数组的类型为 vector<epoll_event>
 
     int epollfd_;      // epoll_create创建返回的fd保存在epollfd_中
